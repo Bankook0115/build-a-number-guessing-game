@@ -10,8 +10,11 @@ USERNAME=$($PSQL "SELECT username FROM users WHERE username='$GET_USERNAME'")
 
 if [[ -z $USERNAME ]]
 then
-  echo "Welcome, $GET_USERNAME! It looks like this is your first time here.\n"
-  INSERT_USERNAME=$($PSQL "INSERT INTO users VALUES('$GET_USERNAME',0,0)")
+  USERNAME=$GET_USERNAME
+  echo "Welcome, $USERNAME! It looks like this is your first time here.\n"
+  INSERT_USERNAME=$($PSQL "INSERT INTO users VALUES('$USERNAME',0,0)")
+  GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE username='$USERNAME'")
+  BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE username='$USERNAME'")
 else
   GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE username='$USERNAME'")
   BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE username='$USERNAME'")
@@ -22,7 +25,7 @@ RANGE=$((1000))
 SECRET_NUMBER=$(($(($RANDOM%$RANGE))+1))
 echo "Guess the secret number between 1 and 1000:"
 read GUESSING_NUMBER
-GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE username='$USERNAME'")
+
 NEW_GAMES_PLAYED=$(($GAMES_PLAYED+1))
 UPATE_GAME_PLAYED=$($PSQL "UPDATE users SET games_played=$NEW_GAMES_PLAYED WHERE username='$USERNAME'")
 
@@ -51,7 +54,7 @@ do
   fi
 done
 
-BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE username='$USERNAME'")
+
 if [[ $COUNT < $BEST_GAME ]] || [[ $BEST_GAME = 0 ]]
 then
   UPATE_BEST_GAME=$($PSQL "UPDATE users SET best_game=$COUNT WHERE username='$USERNAME'")

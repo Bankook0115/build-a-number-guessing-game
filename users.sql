@@ -16,17 +16,17 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE number_guess;
+DROP DATABASE users;
 --
--- Name: number_guess; Type: DATABASE; Schema: -; Owner: freecodecamp
+-- Name: users; Type: DATABASE; Schema: -; Owner: freecodecamp
 --
 
-CREATE DATABASE number_guess WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+CREATE DATABASE users WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
 
 
-ALTER DATABASE number_guess OWNER TO freecodecamp;
+ALTER DATABASE users OWNER TO freecodecamp;
 
-\connect number_guess
+\connect users
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -44,37 +44,31 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: number_guess; Type: TABLE; Schema: public; Owner: freecodecamp
+-- Name: users; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
-CREATE TABLE public.number_guess (
-    username character varying(50) NOT NULL,
+CREATE TABLE public.users (
+    username character varying(25) NOT NULL,
     games_played integer,
     best_game integer
 );
 
 
-ALTER TABLE public.number_guess OWNER TO freecodecamp;
+ALTER TABLE public.users OWNER TO freecodecamp;
 
 --
--- Data for Name: number_guess; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
-
-INSERT INTO public.number_guess VALUES ('user_1662482275938', 1, 235);
-INSERT INTO public.number_guess VALUES ('user_1662482275939', 4, 102);
-INSERT INTO public.number_guess VALUES ('user_1662482343772', 1, 344);
-INSERT INTO public.number_guess VALUES ('user_1662482343773', 4, 654);
 
 
 --
--- Name: number_guess number_guess_username_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.number_guess
-    ADD CONSTRAINT number_guess_username_key UNIQUE (username);
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
 
 
 --
 -- PostgreSQL database dump complete
 --
-
