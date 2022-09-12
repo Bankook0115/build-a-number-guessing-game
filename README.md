@@ -48,4 +48,4 @@ If you are saving your progress on freeCodeCamp.org, after getting all the tests
 
 ## Result
 
-![result](result.png)
+![result](result.png)  
